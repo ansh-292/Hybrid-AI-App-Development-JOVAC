@@ -1,17 +1,20 @@
-# hybrid_ai_app
+# Hybrid-AI-App-Development-JOVAC
 
-A new Flutter project.
+This repository contains my Hybrid AI App Development (JOVAC) assignments completed during the internship.
 
-## Getting Started
+## Assignments
 
-This project is a starting point for a Flutter application.
+- Task 1 – Flutter Development Environment
+- Task 2 – Connecting Android Device with Flutter & Scrcpy
+- Task 3 – Student Information & Result Calculator
+- Task 4 – Student Grade Management System
+- Task 5 – Employee Payroll Management System
+- Task 6 – Student ID Card Flutter Application
 
-A few resources to get you started if this is your first Flutter project:
+## Technologies Used
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Dart
+- Flutter
+- Android Studio
+- VS Code
+- Git & GitHub
