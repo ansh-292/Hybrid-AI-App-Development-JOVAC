@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,114 +11,144 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      title: "Food Item",
+      theme: ThemeData(
+        primarySwatch: Colors.deepOrange,
+      ),
+      home: const FoodCard(),
     );
   }
 }
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  String appBarTitle = "Flutter Profile";
-  Color appBarColor = Colors.blue;
-  String buttonText = "Follow";
-  Color buttonColor = Colors.blue;
-  IconData buttonIcon = Icons.person_outline;
-
-  void followUser() {
-  setState(() {
-    if (buttonText == "Follow") {
-      appBarTitle = "Following Profile";
-      appBarColor = Colors.green;
-      buttonText = "Following";
-      buttonColor = Colors.green;
-      buttonIcon = Icons.check;
-    } else {
-      appBarTitle = "Flutter Profile";
-      appBarColor = Colors.blue;
-      buttonText = "Follow";
-      buttonColor = Colors.blue;
-      buttonIcon = Icons.person_outline;
-    }
-  });
-}
+class FoodCard extends StatelessWidget {
+  const FoodCard({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF5F5F5),
+
       appBar: AppBar(
-        title: Text(appBarTitle),
-        backgroundColor: appBarColor,
+        title: const Text("Food Item"),
+        centerTitle: true,
+        backgroundColor: Colors.deepOrange,
         foregroundColor: Colors.white,
       ),
+
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: 60,
-              backgroundColor: Colors.blue.shade100,
-              child: const Icon(
-                Icons.person,
-                size: 70,
-                color: Colors.blue,
+        child: Container(
+          width: 340,
+          padding: const EdgeInsets.all(18),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(22),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade300,
+                blurRadius: 12,
+                offset: const Offset(3, 3),
               ),
-            ),
+            ],
+          ),
 
-            const SizedBox(height: 20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
 
-            const Text(
-              "Ansh Gupta",
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-
-            const SizedBox(height: 10),
-
-            const Text(
-              "Flutter Developer",
-              style: TextStyle(
-                color: Colors.blue,
-                fontSize: 20,
-              ),
-            ),
-
-            const SizedBox(height: 10),
-
-            const Text(
-              "anshgupta@gmail.com",
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.black54,
-              ),
-            ),
-
-            const SizedBox(height: 30),
-
-            ElevatedButton.icon(
-              onPressed: followUser,
-              icon: Icon(buttonIcon),
-              label: Text(buttonText),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: buttonColor,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 30,
-                  vertical: 15,
-                ),
-                textStyle: const TextStyle(
-                  fontSize: 18,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(18),
+                child: Image.asset(
+                  "assets/pizza.png",
+                  width: double.infinity,
+                  height: 220,
+                  fit: BoxFit.cover,
                 ),
               ),
-            ),
-          ],
+
+              const SizedBox(height: 25),
+
+              const Text(
+                "Food Item",
+                style: TextStyle(
+                  fontSize: 34,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              const SizedBox(height: 15),
+
+              const Text(
+                "Fresh & Delicious Pizza\nwith Multiple Toppings",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.grey,
+                  height: 1.4,
+                ),
+              ),
+
+              const SizedBox(height: 22),
+
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                    size: 30,
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    "4.9 (310 Reviews)",
+                    style: TextStyle(
+                      fontSize: 22,
+                    ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 25),
+
+              const Text(
+                "₹499",
+                style: TextStyle(
+                  color: Colors.deepOrange,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 46,
+                ),
+              ),
+
+              const SizedBox(height: 30),
+
+              SizedBox(
+                width: double.infinity,
+                height: 60,
+                child: ElevatedButton(
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Order Placed Successfully!"),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.deepOrange,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(35),
+                    ),
+                  ),
+                  child: const Text(
+                    "Order Now",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
