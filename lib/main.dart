@@ -11,135 +11,148 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Task-8B: Profile Avatars',
+      title: "Food Items",
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: const ProfileAvatarScreen(),
+      home: const FoodMenuScreen(),
     );
   }
 }
 
-class ProfileAvatarScreen extends StatelessWidget {
-  const ProfileAvatarScreen({super.key});
+class FoodMenuScreen extends StatelessWidget {
+  const FoodMenuScreen({super.key});
+
+  final List<Map<String, dynamic>> foodItems = const [
+    {
+      "name": "Pizza",
+      "price": "₹599",
+      "icon": Icons.local_pizza,
+    },
+    {
+      "name": "Gourmet Burger",
+      "price": "₹349",
+      "icon": Icons.lunch_dining,
+    },
+    {
+      "name": "Noodles",
+      "price": "₹249",
+      "icon": Icons.ramen_dining,
+    },
+    {
+      "name": "Tomato Soup",
+      "price": "₹199",
+      "icon": Icons.soup_kitchen,
+    },
+    {
+      "name": "Classic Dessert",
+      "price": "₹199",
+      "icon": Icons.cake,
+    },
+    {
+      "name": "Mango Lassi",
+      "price": "₹99",
+      "icon": Icons.local_drink,
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade200,
+
       appBar: AppBar(
-        title: const Text("Task-8B: Profile Avatars"),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.green,
         foregroundColor: Colors.white,
+        title: const Text("Food Items"),
+        centerTitle: true,
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
 
-              const Text(
-                "Profile with Camera Icon",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
+      body: Padding(
+        padding: const EdgeInsets.all(12),
+
+        child: Column(
+          children: [
+
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const TextField(
+                decoration: InputDecoration(
+                  icon: Icon(Icons.search),
+                  hintText: "Search",
+                  border: InputBorder.none,
                 ),
               ),
+            ),
 
-              const SizedBox(height: 20),
+            const SizedBox(height: 15),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      const CircleAvatar(
-                        radius: 80,
-                        backgroundColor: Color(0xFFE0E0E0),
+            Expanded(
+              child: ListView.separated(
+
+                itemCount: foodItems.length,
+
+                separatorBuilder: (context, index) =>
+                    const Divider(height: 12),
+
+                itemBuilder: (context, index) {
+
+                  final item = foodItems[index];
+
+                  return Card(
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+
+                    child: ListTile(
+
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 10,
+                      ),
+
+                      leading: CircleAvatar(
+                        radius: 28,
+                        backgroundColor: Colors.green.shade100,
                         child: Icon(
-                          Icons.person,
-                          size: 90,
-                          color: Colors.black54,
+                          item["icon"],
+                          color: Colors.green,
+                          size: 30,
                         ),
                       ),
 
-                      Positioned(
-                        bottom: 0,
-                        right: -5,
-                        child: Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: Colors.blue,
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.white,
-                              width: 3,
-                            ),
-                          ),
-                          child: const Icon(
-                            Icons.camera_alt,
-                            color: Colors.white,
-                            size: 28,
-                          ),
+                      title: Text(
+                        item["name"],
+                        style: const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ],
-                  ),
-                ],
+
+                      subtitle: Text(
+                        item["price"],
+                        style: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.black87,
+                        ),
+                      ),
+
+                      trailing: const Icon(
+                        Icons.shopping_cart,
+                        color: Colors.green,
+                        size: 34,
+                      ),
+                    ),
+                  );
+                },
               ),
-
-              const SizedBox(height: 60),
-
-              const Text(
-                "Profile with Online Indicator",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-
-              const SizedBox(height: 20),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      const CircleAvatar(
-                        radius: 80,
-                        backgroundColor: Color(0xFFE0E0E0),
-                        child: Icon(
-                          Icons.person,
-                          size: 90,
-                          color: Colors.black54,
-                        ),
-                      ),
-
-                      Positioned(
-                        top: 5,
-                        right: 5,
-                        child: Container(
-                          width: 26,
-                          height: 26,
-                          decoration: BoxDecoration(
-                            color: Colors.green,
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.white,
-                              width: 3,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 30),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
