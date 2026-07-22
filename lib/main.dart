@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'settings.dart';
+import 'home_screen.dart';
+import 'edit_course_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,8 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'User Preferences',
-      home: const SettingsScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomeScreen(),
+        '/edit': (context) => const EditCourseScreen(),
+      },
     );
   }
 }
